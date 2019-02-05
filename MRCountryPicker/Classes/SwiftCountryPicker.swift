@@ -25,7 +25,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     
     var countries: [Country]!
     open var selectedLocale: Locale?
-    open weak var countryPickerDelegate: MRCountryPickerDelegate?
+    @objc open weak var countryPickerDelegate: MRCountryPickerDelegate?
     open var showPhoneNumbers: Bool = true
     
     override init(frame: CGRect) {
