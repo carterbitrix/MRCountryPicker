@@ -55,9 +55,14 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
         self.selectedLocale = Locale(identifier: locale)
     }
 
+
+    @objc open func setPickerDelegate(_ delegate: MRCountryPickerDelegate) {
+        self.countryPickerDelegate = delegate;
+    }
+
     // MARK: - Country Methods
-    
-    open func setCountry(_ code: String) {
+
+    @objc open func setCountry(_ code: String) {
         for index in 0..<countries.count {
             if countries[index].code == code {
                 return self.setCountryByRow(row: index)
