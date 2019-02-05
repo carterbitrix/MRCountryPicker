@@ -25,7 +25,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     
     var countries: [Country]!
     open var selectedLocale: Locale?
-    @objc open weak var countryPickerDelegate: MRCountryPickerDelegate?
+    open weak var countryPickerDelegate: MRCountryPickerDelegate?
     open var showPhoneNumbers: Bool = true
     
     override init(frame: CGRect) {
@@ -51,7 +51,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     
     // MARK: - Locale Methods
 
-    open func setLocale(_ locale: String) {
+    @objc open func setLocale(_ locale: String) {
         self.selectedLocale = Locale(identifier: locale)
     }
 
