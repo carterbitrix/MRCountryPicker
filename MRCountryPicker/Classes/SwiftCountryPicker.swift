@@ -48,6 +48,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
         super.dataSource = self
         super.delegate = self
     }
+
     
     // MARK: - Locale Methods
 
@@ -86,7 +87,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
         }
     }
 
-    func setCountryByRow(row: Int) {
+    @objc open func setCountryByRow(row: Int) {
         self.selectRow(row, inComponent: 0, animated: true)
         let country = countries[row]
         if let countryPickerDelegate = countryPickerDelegate {
@@ -95,8 +96,8 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     }
     
     // Populates the metadata from the included json file resource
-    
-    func countryNamesByCode() -> [Country] {
+
+    @objc open func countryNamesByCode() -> [Country] {
         var countries = [Country]()
         let frameworkBundle = Bundle(for: type(of: self))
         guard let jsonPath = frameworkBundle.path(forResource: "SwiftCountryPicker.bundle/Data/countryCodes", ofType: "json"), let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
