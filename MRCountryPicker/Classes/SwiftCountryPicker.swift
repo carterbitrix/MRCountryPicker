@@ -71,6 +71,19 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
         }
     }
 
+    @objc open func getCountryInfoByCode(_ code: String) {
+        for index in 0..<countries.count
+        {
+            if countries[index].code == code {
+                return [
+                    "name":countries[index].name,
+                    "code":countries[index].code,
+                    "flag":countries[index].flag
+                ]
+            }
+        }
+    }
+
     open func setCountryByPhoneCode(_ phoneCode: String) {
         for index in 0..<countries.count {
             if countries[index].phoneCode == phoneCode {
@@ -87,7 +100,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
         }
     }
 
-    @objc open func setCountryByRow(row: Int) {
+    func setCountryByRow(row: Int) {
         self.selectRow(row, inComponent: 0, animated: true)
         let country = countries[row]
         if let countryPickerDelegate = countryPickerDelegate {
@@ -97,7 +110,7 @@ open class MRCountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewData
     
     // Populates the metadata from the included json file resource
 
-    @objc open func countryNamesByCode() -> [Country] {
+    func countryNamesByCode() -> [Country] {
         var countries = [Country]()
         let frameworkBundle = Bundle(for: type(of: self))
         guard let jsonPath = frameworkBundle.path(forResource: "SwiftCountryPicker.bundle/Data/countryCodes", ofType: "json"), let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
